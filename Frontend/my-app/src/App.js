@@ -11,8 +11,8 @@ function App() {
       <div className="main">
        
        <form>
-        <h3>Search Products</h3>
-        <input type="text" placeholder="Enter Product Name" />
+       <label>Search for a new product:</label>
+        <input type="text"  placeholder="Enter Product Name" />
         <button>Search</button>
         
         </form>
