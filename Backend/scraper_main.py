@@ -39,7 +39,9 @@ def scrape_and_store_data():
             price = item.select('.listing-price .price')[0].get_text()
             
             # Remove pound sign and other text from price
-            price = float(price.replace('£', '').replace('inc.vat', '').strip())
+            
+            price = float(price.replace('£', '').replace('inc.vat', '').replace(',', '').strip())
+
             
             product_url = item.select_one('h3.listing-product-title a')['href']
             
