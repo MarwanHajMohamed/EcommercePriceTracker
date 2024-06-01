@@ -1,5 +1,7 @@
 from config import db
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+
 
 
 class ProductResult(db.Model):
@@ -10,7 +12,6 @@ class ProductResult(db.Model):
     price = db.Column(db.Float)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     search_text = db.Column(db.String(255))
-    
 
     def __init__(self, name, img, url, price, search_text):
         self.name = name
@@ -18,5 +19,6 @@ class ProductResult(db.Model):
         self.img = img
         self.price = price
         self.search_text = search_text
-       
+
+
 
