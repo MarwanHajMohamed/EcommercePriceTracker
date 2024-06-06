@@ -1,5 +1,6 @@
 from config import app, db
 from models import ProductResult
+from models import TrackedProducts
 
 if __name__ == '__main__':
     with app.app_context():
@@ -14,3 +15,5 @@ if __name__ == '__main__':
             print(f"URL: {product.url}")
             print(f"Image: {product.img}")
             print("\n")
+
+       
