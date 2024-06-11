@@ -16,9 +16,124 @@
 
 .main {
   text-align: left;
-  padding-left: 20px;
+  padding-left: 0px;
+  
+}
+
+.search-container{
+
+  background-color: rgb(112, 112, 112);
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: rgb(0, 0, 0);
+
+}
+
+.search-element{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#search-text{
+ font-weight: bold;
+}
+
+#search-input{
+  height: 23px;
+  width: 300px;
+}
+
+#search-button{
+  height: 30px;
+  width: 100px;
+  color: rgb(31, 52, 171);
+  font-size: large;
+  font-weight: bold;
+  cursor: pointer;
+  
+}
+
+#search-button:hover{
+  background-color: rgb(31, 52, 171);
+  transition: 0.5s;
+  color: white;
+}
+
+
+.TrackedList{
+  width: 850px;
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;  
+  background-color: rgb(195, 190, 190);
+  text-align: center;
+}
+
+.list{
+  display: flex;
+            flex-direction: column;
+            gap: 10px;
+}
+
+.product-list{
+  list-style-type: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;  
+  background-color: rgb(195, 190, 190);
+  text-align: center;
+  width: 700px;
+  background-color: rgb(112, 112, 112);
+  color: #000;
+}
+
+.product-list:hover{
+  background-color: rgb(255, 255, 255);
+  transition: 0.5s;
+}
+
+.list-view{
+  width: 850px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  background-color: rgb(188, 186, 186);
 }
 
 
 
 
+table {
+  width: 100%;
+  border-collapse: collapse; /* Ensures that borders are not doubled */
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd; /* Adds borders to each cell */
+  text-align: left;
+}
+
+th {
+  background-color: #3063c8; /* Background color for table headers */
+}
+
+
+
+.price-column-data{
+  font-weight: bold;
+  color: rgb(31, 52, 171);
+  background-color: rgb(173, 176, 196);
+}
