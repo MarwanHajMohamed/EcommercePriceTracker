@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.selected-product{
+
+  color:rgb(67, 67, 211);
+  font-weight: bold;
+}

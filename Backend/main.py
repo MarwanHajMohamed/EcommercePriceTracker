@@ -5,6 +5,8 @@ from flask_cors import CORS
 from models import TrackedProducts
 from models import ProductResult
 from sqlalchemy import func
+import logging
+
 
 
 CORS(app)
@@ -20,28 +22,34 @@ def get_tracked_products():
     return jsonify({'trackedproducts': tracked_prodcuts_list})
 
 
-
-
 @app.route('/api/search', methods=['POST'])
 def search_product():
-    search_text = request.json.get('searchText')
-    if not search_text:
-        return jsonify({'message': 'No search text provided'}), 400
-    
-    # Check if the search text is already tracked
-    tracked_product = TrackedProducts.query.filter_by(search_text=search_text).first()
-    if not tracked_product:
-        # If not tracked yet, add to TrackedProducts table
-        tracked_product = TrackedProducts(search_text=search_text)
-        db.session.add(tracked_product)
-        db.session.commit()
     try:
-        scrape_and_store_data(search_text)
-        return jsonify({'message': 'Scraping complete'}), 200
+        search_text = request.json.get('searchText')
+        if not search_text:
+            logging.error('No search text provided')
+            return jsonify({'message': 'No search text provided'}), 400
+
+        logging.info(f"Received search text: {search_text}")
+        
+        # Check if the search text is already tracked
+        tracked_product = TrackedProducts.query.filter_by(search_text=search_text).first()
+        if not tracked_product:
+            # If not tracked yet, add to TrackedProducts table
+            tracked_product = TrackedProducts(search_text=search_text)
+            db.session.add(tracked_product)
+            db.session.commit()
+            logging.info(f"Added new tracked product: {search_text}")
+        try:
+            scrape_and_store_data(search_text)
+            logging.info(f"Scraping complete for: {search_text}")
+            return jsonify({'message': 'Scraping complete'}), 200
+        except Exception as e:
+            logging.error(f"An error occurred during scraping: {e}")
+            return jsonify({'message': 'An error occurred during scraping', 'error': str(e)}), 500
     except Exception as e:
-        return jsonify({'message': 'An error occurred during scraping', 'error': str(e)}), 500
-    except Exception as e:
-        return jsonify({'message': 'An error occurred during scraping', 'error': str(e)}), 500
+        logging.error(f"An error occurred: {e}")
+        return jsonify({'message': 'An internal error occurred', 'error': str(e)}), 500
 
 @app.route('/api/query', methods=['GET'])
 def get_latest_product_data():
